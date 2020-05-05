@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import Navigation from "./navigation";
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,9 +28,9 @@ const useStyles = makeStyles((theme) => ({
     
   }));
 
-function App() {
+function Login(props) {
     const classes = useStyles();
-
+    const history = useHistory();
     const [loginId, setLoginId] = useState("");
     const [password, setPassword] = useState("");
     const [loginSuccess, setLoginSuccess] = useState(false);
@@ -35,8 +38,9 @@ function App() {
   
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        if (loginId === 'login' && password==='password'){
+        if (loginId === 'harsh' && password==='password'){
             setLoginFail(false);
+            history.push(`/welcome/${loginId}`);
         }
         else{
             setLoginFail(true);
@@ -44,7 +48,7 @@ function App() {
     }
     return (
     <div className={classes.App}>
-        
+        <Navigation/>
         <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
 
             {loginFail && <div className={classes.loginFail}>Invalid Credentials</div>}
@@ -56,7 +60,6 @@ function App() {
                 onChange={e => setLoginId(e.target.value)}
                 /> <br/>
             <TextField 
-                
                 id="password" 
                 label="Password" 
                 variant="outlined" 
@@ -74,5 +77,5 @@ function App() {
   );
 }
 
-export default App;
+export default Login;
 
