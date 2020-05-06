@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import Navigation from "./navigation";
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
     loginFail: {
         width:'100%', 
         textAlign: 'center'
+    },
+    nav: {
+        backgroundColor: 'lightblue'
     }
     
   }));
@@ -48,7 +53,13 @@ function Login(props) {
     }
     return (
     <div className={classes.App}>
-        <Navigation/>
+        <BottomNavigation
+        showLabels
+        className={classes.nav}
+        >
+            <BottomNavigationAction label="Todo App" icon={<FormatListBulletedIcon />} />
+        </BottomNavigation>
+
         <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
 
             {loginFail && <div className={classes.loginFail}>Invalid Credentials</div>}

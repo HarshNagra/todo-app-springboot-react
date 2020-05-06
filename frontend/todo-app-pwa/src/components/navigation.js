@@ -1,8 +1,10 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
+import HomeIcon from '@material-ui/icons/Home';
 
 const useStyles = makeStyles({
     root: {
@@ -11,9 +13,10 @@ const useStyles = makeStyles({
 });
 
 function Navigation() {
+    const history = useHistory();
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
-  return (
+    return (
     <div className="App">
         <BottomNavigation
         value={value}
@@ -23,8 +26,12 @@ function Navigation() {
         showLabels
         className={classes.root}
         >
-            <BottomNavigationAction label="Todo App" icon={<FormatListBulletedIcon />} />
+            <BottomNavigationAction onClick={e =>history.push("/welcome")} label="" icon={<HomeIcon/>} />
+            <BottomNavigationAction onClick={e =>history.push("/todo")} label="" icon={<FormatListBulletedIcon />} />
         </BottomNavigation>
+        
+            
+
     </div>
   );
 }
