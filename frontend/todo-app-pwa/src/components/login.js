@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import AuthenticationService from './authenticationService';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -38,12 +39,12 @@ function Login(props) {
     const history = useHistory();
     const [loginId, setLoginId] = useState("");
     const [password, setPassword] = useState("");
-    const [loginSuccess, setLoginSuccess] = useState(false);
     const [loginFail, setLoginFail] = useState(false);
   
     const handleSubmit = (evt) => {
         evt.preventDefault();
         if (loginId === 'harsh' && password==='password'){
+            AuthenticationService.registerSuccessfulLogin(loginId, password);
             setLoginFail(false);
             history.push(`/welcome/${loginId}`);
         }
@@ -53,12 +54,12 @@ function Login(props) {
     }
     return (
     <div className={classes.App}>
-        <BottomNavigation
+        {/* <BottomNavigation
         showLabels
         className={classes.nav}
         >
             <BottomNavigationAction label="Todo App" icon={<FormatListBulletedIcon />} />
-        </BottomNavigation>
+        </BottomNavigation> */}
 
         <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
 

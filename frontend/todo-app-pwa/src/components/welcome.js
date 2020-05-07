@@ -7,7 +7,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 function Welcome(props) {
   return (
     <div className="App">
-      <Navigation/>
+      {/* <Navigation/> */}
       <div>{props.match.params.name}</div>
     </div>
   );

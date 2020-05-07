@@ -1,10 +1,13 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory,  Link } from 'react-router-dom';
+import AuthenticationService from './authenticationService';
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import HomeIcon from '@material-ui/icons/Home';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+
 
 const useStyles = makeStyles({
     root: {
@@ -15,19 +18,19 @@ const useStyles = makeStyles({
 function Navigation() {
     const history = useHistory();
     const classes = useStyles();
-    const [value, setValue] = React.useState(0);
+    const [value, setValue] = React.useState('Home');
+    const isUserLoggedIn = AuthenticationService.isUserLogedIn();
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+      };
     return (
     <div className="App">
-        <BottomNavigation
-        value={value}
-        onChange={(event, newValue) => {
-            setValue(newValue);
-        }}
-        showLabels
-        className={classes.root}
-        >
-            <BottomNavigationAction onClick={e =>history.push("/welcome")} label="" icon={<HomeIcon/>} />
-            <BottomNavigationAction onClick={e =>history.push("/todo")} label="" icon={<FormatListBulletedIcon />} />
+        <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
+            {!isUserLoggedIn && <BottomNavigationAction label="Todo App" icon={<FormatListBulletedIcon />} />}
+            {isUserLoggedIn && <BottomNavigationAction component={Link} to="/welcome/harsh" label="Home" value="welcome" icon={<HomeIcon/>} />}
+            {isUserLoggedIn && <BottomNavigationAction component={Link} to="/todo" label="Todo" value="todo" icon={<FormatListBulletedIcon />} />}
+            {isUserLoggedIn && <BottomNavigationAction onClick={AuthenticationService.logout} component={Link} to="/logout" label="Logout" value="logout" icon={<ExitToAppIcon />} />}
         </BottomNavigation>
         
             
