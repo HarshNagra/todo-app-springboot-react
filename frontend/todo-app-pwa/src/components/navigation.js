@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory,  Link } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 import AuthenticationService from './authenticationService';
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
@@ -16,7 +16,6 @@ const useStyles = makeStyles({
 });
 
 function Navigation() {
-    const history = useHistory();
     const classes = useStyles();
     const [value, setValue] = React.useState('Home');
     const isUserLoggedIn = AuthenticationService.isUserLogedIn();

@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -16,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: '25ch',
       textAlign: 'center',
       width: '100%',
-      textAlign: 'center'
       
     },
     button: {

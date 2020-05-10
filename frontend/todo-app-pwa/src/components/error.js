@@ -1,7 +1,4 @@
 import React from 'react';
-import Navigation from "./navigation";
-
-import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 
 function Error() {

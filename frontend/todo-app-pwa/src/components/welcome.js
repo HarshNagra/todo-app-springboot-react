@@ -1,16 +1,34 @@
-import React from 'react';
-import Navigation from "./navigation";
+import React, {useState} from 'react';
+import HelloWorldService from '../api/todo/HelloWorldService';
 
-import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 
 function Welcome(props) {
+  const [welcomeMessage, setWelcomeMessage] = useState('');
+
+  const retrieveWelcomeMessage = () => {
+    HelloWorldService.executeHelloWorldService()
+    .then(response => handleSuccessfulResponse(response))
+    //.catch()
+  }
+
+  const handleSuccessfulResponse = (response) => {
+    setWelcomeMessage(response.data);
+  };
+
   return (
     <div className="App">
-      {/* <Navigation/> */}
       <div>{props.match.params.name}</div>
+      <div>
+        Click here to check backend
+        <button onClick={retrieveWelcomeMessage}>Button</button>
+      </div>
+      <div>
+        {welcomeMessage}
+      </div>
     </div>
   );
 }
 
 export default Welcome;
+
