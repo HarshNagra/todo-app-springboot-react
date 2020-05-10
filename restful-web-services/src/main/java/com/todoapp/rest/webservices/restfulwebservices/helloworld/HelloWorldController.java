@@ -1,4 +1,4 @@
-package com.todoapp.rest.webservices.restfulwebservices;
+package com.todoapp.rest.webservices.restfulwebservices.helloworld;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -18,12 +18,13 @@ public class HelloWorldController {
     //hello-world-bean
     @GetMapping(path = "hello-world-bean")
     public HelloWorldBean helloWorldBean() {
-        return new HelloWorldBean("Hello World");
+        return new HelloWorldBean("Hello World Bean");
     }
 
     //hello-world/path-variable/harsh
     @GetMapping(path = "hello-world/path-variable/{name}")
     public HelloWorldBean helloWorldBean(@PathVariable String name) {
-        return new HelloWorldBean(String.format("Hello World %s", name));
+        throw new RuntimeException("Something went wrong");
+//        return new HelloWorldBean(String.format("Hello World %s", name));
     }
 }

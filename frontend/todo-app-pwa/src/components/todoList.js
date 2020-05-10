@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import TodoDataService from '../api/todo/TodoDataService';
+import AuthenticationService from './authenticationService';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -14,18 +16,25 @@ const useStyles = makeStyles({
     },
 });
 
-const rows = [
-    createData(1, 'Assignment', '30/02/2020', 'false'),
-    createData(2, 'Email', '15/02/2020', 'false'),
-    createData(3, 'Exam', '20/03/2020', 'false'),
-  ];
-
-function createData(id, task, targetDate, done) {
-return { id, task, targetDate, done };
-}
 
 function TodoList(props) {
     const classes = useStyles();
+    const [todos, setTodos] = useState([]);
+    useEffect(() => {
+        let username = AuthenticationService.getLoggedInUserName();
+        console.log("mount")
+        TodoDataService.retrieveAllTodos(username)
+        .then( 
+            response => {
+                setTodos(response.data)
+            }
+            )
+        
+        return function cleanup() {
+            console.log("unmount")
+        }
+
+    }, []);
     return (
         <div className="App">
             {/* <Navigation/> */}
@@ -40,14 +49,14 @@ function TodoList(props) {
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {rows.map((row) => (
-                        <TableRow key={row.name}>
+                    {todos.map((row) => (
+                        <TableRow key={row.id}>
                         <TableCell component="th" scope="row">
                             {row.id}
                         </TableCell>
                         <TableCell >{row.task}</TableCell>
                         <TableCell>{row.targetDate}</TableCell>
-                        <TableCell>{row.done}</TableCell>
+                        <TableCell>{''+row.done}</TableCell>
                         </TableRow>
                     ))}
                     </TableBody>
