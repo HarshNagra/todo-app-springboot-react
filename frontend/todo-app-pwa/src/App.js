@@ -5,7 +5,8 @@ import Login from "./components/login";
 import Logout from "./components/logout";
 import Welcome from "./components/welcome";
 import Error from "./components/error";
-import Todo from "./components/todoList";
+import TodoList from "./components/todoList";
+import Todo from "./components/todo";
 import AuthenticatedRoute from "./components/authenticatedRoute";
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
@@ -21,8 +22,10 @@ function App() {
           <Route path="/" exact component={Login}/>
           <Route path="/login" component={Login}/>
           <AuthenticatedRoute path="/welcome/:name" component={Welcome}/>
-          <AuthenticatedRoute path="/todo" component={Todo}/>
+          <AuthenticatedRoute path="/todo/:id" component={Todo}/>
+          <AuthenticatedRoute path="/todo" component={TodoList}/>
           <AuthenticatedRoute path="/logout" component={Logout}/>
+          
           <Route  component={Error}/>
         </Switch>
       </Router>

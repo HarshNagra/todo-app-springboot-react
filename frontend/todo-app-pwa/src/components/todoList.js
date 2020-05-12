@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {useHistory} from 'react-router-dom';
 import TodoDataService from '../api/todo/TodoDataService';
 import AuthenticationService from './authenticationService';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,32 +10,56 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
     table: {
       minWidth: 650,
     },
+    button: {
+        backgroundColor: 'lightblue',
+    }
 });
 
 
 function TodoList(props) {
     const classes = useStyles();
     const [todos, setTodos] = useState([]);
+    const [message, setMessage] = useState(null);
+    const history = useHistory();
     useEffect(() => {
+        refreshTodos();
+        return function cleanup() {
+        }
+
+    }, []);
+
+    const refreshTodos = () => {
         let username = AuthenticationService.getLoggedInUserName();
-        console.log("mount")
         TodoDataService.retrieveAllTodos(username)
         .then( 
             response => {
                 setTodos(response.data)
-            }
+                }
             )
-        
-        return function cleanup() {
-            console.log("unmount")
-        }
+    }
 
-    }, []);
+    const deleteTodoCLicked = (id) => {
+        let username = AuthenticationService.getLoggedInUserName();
+        TodoDataService.deleteTodo(username, id)
+        .then (
+            response => {
+                refreshTodos();
+                setMessage(`Deleted item ${id}`);
+            }
+        )
+    }
+
+    const updateTodoCLicked = (id) => {
+        history.push(`/todo/${id}`);
+        let username = AuthenticationService.getLoggedInUserName();
+        console.log()
+    }
     return (
         <div className="App">
             {/* <Navigation/> */}
@@ -46,6 +71,8 @@ function TodoList(props) {
                         <TableCell>Task</TableCell>
                         <TableCell>Target Date</TableCell>
                         <TableCell>Done</TableCell>
+                        <TableCell></TableCell>
+                        <TableCell></TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
@@ -57,11 +84,28 @@ function TodoList(props) {
                         <TableCell >{row.task}</TableCell>
                         <TableCell>{row.targetDate}</TableCell>
                         <TableCell>{''+row.done}</TableCell>
+                        <TableCell>
+                            <Button 
+                            className={classes.button} 
+                            variant="contained"
+                            onClick={() => updateTodoCLicked(row.id)}>
+                                Update
+                            </Button>
+                        </TableCell>
+                        <TableCell>
+                            <Button 
+                                className={classes.button} 
+                                variant="contained" 
+                                onClick={() => deleteTodoCLicked(row.id)}>
+                                Delete
+                            </Button>
+                        </TableCell>
                         </TableRow>
                     ))}
                     </TableBody>
                 </Table>
             </TableContainer>
+            <div>{message}</div>
         </div>
   );
 }
