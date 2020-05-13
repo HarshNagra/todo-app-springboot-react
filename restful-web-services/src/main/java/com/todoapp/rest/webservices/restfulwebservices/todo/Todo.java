@@ -11,6 +11,9 @@ public class Todo {
     private Date targetDate;
     private boolean done;
 
+    protected Todo() {
+
+    }
     public Todo(long id, String username, String task, Date targetDate, boolean done) {
         this.id = id;
         this.username = username;

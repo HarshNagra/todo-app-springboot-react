@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {useHistory} from 'react-router-dom';
+import moment from 'moment';
 import TodoDataService from '../api/todo/TodoDataService';
 import AuthenticationService from './authenticationService';
 import { makeStyles } from '@material-ui/core/styles';
@@ -60,6 +61,13 @@ function TodoList(props) {
         let username = AuthenticationService.getLoggedInUserName();
         console.log()
     }
+
+    const addTodoCLicked = (id) => {
+        history.push(`/todo/-1`);
+        let username = AuthenticationService.getLoggedInUserName();
+        console.log("Add")
+    }
+
     return (
         <div className="App">
             {/* <Navigation/> */}
@@ -67,22 +75,22 @@ function TodoList(props) {
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                     <TableRow>
-                        <TableCell>ID</TableCell>
+                        {/* <TableCell>ID</TableCell> */}
                         <TableCell>Task</TableCell>
-                        <TableCell>Target Date</TableCell>
+                        <TableCell>Due Date</TableCell>
                         <TableCell>Done</TableCell>
-                        <TableCell></TableCell>
-                        <TableCell></TableCell>
+                        <TableCell>Update</TableCell>
+                        <TableCell>Delete</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
                     {todos.map((row) => (
                         <TableRow key={row.id}>
-                        <TableCell component="th" scope="row">
+                        {/* <TableCell component="th" scope="row">
                             {row.id}
-                        </TableCell>
+                        </TableCell> */}
                         <TableCell >{row.task}</TableCell>
-                        <TableCell>{row.targetDate}</TableCell>
+                        <TableCell>{moment(row.targetDate).format('YYYY-MM-DD')}</TableCell>
                         <TableCell>{''+row.done}</TableCell>
                         <TableCell>
                             <Button 
@@ -106,6 +114,15 @@ function TodoList(props) {
                 </Table>
             </TableContainer>
             <div>{message}</div>
+            <div style = {{padding: '20px'}}>
+                <Button 
+                    className={classes.button} 
+                    variant="contained" 
+                    onClick={() => addTodoCLicked(-1)}>
+                    Add
+                </Button>
+            </div>
+            
         </div>
   );
 }
