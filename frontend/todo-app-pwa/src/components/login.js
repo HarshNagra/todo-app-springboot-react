@@ -40,23 +40,25 @@ function Login(props) {
   
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        if (loginId === 'harsh' && password==='password'){
-            AuthenticationService.registerSuccessfulLogin(loginId, password);
+        // if (loginId === 'harsh' && password==='password'){
+        //     AuthenticationService.registerSuccessfulLogin(loginId, password);
+        //     setLoginFail(false);
+        //     history.push(`/welcome/${loginId}`);
+        // }
+        // else{
+        //     setLoginFail(true);
+        // }
+        AuthenticationService.executeBasicAuthenticationService(loginId, password)
+        .then(() => {
             setLoginFail(false);
+            AuthenticationService.registerSuccessfulLogin(loginId, password);
             history.push(`/welcome/${loginId}`);
-        }
-        else{
+        }).catch( () => {
             setLoginFail(true);
-        }
+        })
     }
     return (
     <div className={classes.App}>
-        {/* <BottomNavigation
-        showLabels
-        className={classes.nav}
-        >
-            <BottomNavigationAction label="Todo App" icon={<FormatListBulletedIcon />} />
-        </BottomNavigation> */}
 
         <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
 

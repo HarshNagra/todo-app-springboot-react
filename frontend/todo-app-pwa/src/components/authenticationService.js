@@ -1,9 +1,21 @@
-
+import axios from 'axios';
 
 
 class AuthenticationService {
-    registerSuccessfulLogin(loginId, password){
-        sessionStorage.setItem('authenticatedUser', loginId);
+
+    executeBasicAuthenticationService(username, password){
+        return axios.get('http://localhost:8080/basicauth', 
+        {
+            headers: {authorization: this.createBasicAuthToken(username, password)}
+        })
+    }
+    createBasicAuthToken(username, password){
+        return 'Basic ' + window.btoa(username + ":" + password)
+    }
+
+    registerSuccessfulLogin(username, password){
+        sessionStorage.setItem('authenticatedUser', username);
+        this.setupAxiosInterceptors(this.createBasicAuthToken(username, password));
     }
 
     logout() {
@@ -23,6 +35,20 @@ class AuthenticationService {
         else return user
 
     }
+
+    setupAxiosInterceptors(basicAuthHeader) {
+        axios.interceptors.request.use(
+            (config) => {
+                if(this.isUserLogedIn()){
+                    config.headers.authorization = basicAuthHeader
+                }
+                return config
+            }
+            
+        )
+    }
+    
+
   
 }
 

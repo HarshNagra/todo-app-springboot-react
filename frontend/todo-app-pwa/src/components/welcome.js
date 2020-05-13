@@ -7,12 +7,6 @@ function Welcome(props) {
   const [welcomeMessage, setWelcomeMessage] = useState('');
 
   const retrieveWelcomeMessage = () => {
-    // HelloWorldService.executeHelloWorldService()
-    // .then(response => handleSuccessfulResponse(response))
-
-    // HelloWorldService.executeHelloWorldBeanService()
-    // .then(response => handleSuccessfulResponse(response))
-
     HelloWorldService.executeHelloWorldPathService(props.match.params.name)
     .then(response => handleSuccessfulResponse(response))
     .catch(error => handleError(error))
@@ -24,9 +18,13 @@ function Welcome(props) {
   };
 
   const handleError = (error) => {
-    console.log(error.response.data.message);
-    setWelcomeMessage(error.response.data.message);
-    // setWelcomeMessage(response.data.message);
+    console.log(error.response);
+    let errorMessage = '';
+    if(error.message) errorMessage += error.message
+    if(error.response && error.response.data){
+      errorMessage += error.response.data.message
+    }
+    setWelcomeMessage(errorMessage)
   };
 
   return (
