@@ -30,13 +30,6 @@ function Login(props) {
     
     return (
     <div className={classes.App}>
-        {/* <BottomNavigation
-        showLabels
-        className={classes.nav}
-        >
-            <BottomNavigationAction label="Todo App" icon={<FormatListBulletedIcon />} />
-        </BottomNavigation> */}
-
         <h4>You have logged out. <Link to="/login">Click here</Link> to login in!</h4>
         
       

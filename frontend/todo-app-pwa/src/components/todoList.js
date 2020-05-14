@@ -12,10 +12,17 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
+import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles({
+    tableContainer:{
+        padding:'10px'
+    }, 
     table: {
       minWidth: 650,
+      textAlign: 'center'
     },
     button: {
         backgroundColor: 'lightblue',
@@ -70,17 +77,16 @@ function TodoList(props) {
 
     return (
         <div className="App">
-            {/* <Navigation/> */}
-            <TableContainer component={Paper}>
+            <TableContainer className={classes.tableContainer} component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                     <TableRow>
                         {/* <TableCell>ID</TableCell> */}
                         <TableCell>Task</TableCell>
                         <TableCell>Due Date</TableCell>
-                        <TableCell>Done</TableCell>
-                        <TableCell>Update</TableCell>
-                        <TableCell>Delete</TableCell>
+                        {/* <TableCell>Done</TableCell> */}
+                        <TableCell></TableCell>
+                        <TableCell></TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
@@ -90,23 +96,26 @@ function TodoList(props) {
                             {row.id}
                         </TableCell> */}
                         <TableCell >{row.task}</TableCell>
-                        <TableCell>{moment(row.targetDate).format('YYYY-MM-DD')}</TableCell>
-                        <TableCell>{''+row.done}</TableCell>
+                        <TableCell>{moment(row.targetDate).format('DD/MM/YYYY')}</TableCell>
+                        {/* <TableCell>{''+row.done}</TableCell> */}
                         <TableCell>
                             <Button 
                             className={classes.button} 
                             variant="contained"
+                            
                             onClick={() => updateTodoCLicked(row.id)}>
-                                Update
+                                <EditIcon/>
                             </Button>
+                        
+                            
                         </TableCell>
                         <TableCell>
                             <Button 
                                 className={classes.button} 
                                 variant="contained" 
-                                onClick={() => deleteTodoCLicked(row.id)}>
-                                Delete
-                            </Button>
+                                
+                                onClick={() => deleteTodoCLicked(row.id)}
+                            ><DeleteIcon/></Button>
                         </TableCell>
                         </TableRow>
                     ))}
@@ -119,7 +128,7 @@ function TodoList(props) {
                     className={classes.button} 
                     variant="contained" 
                     onClick={() => addTodoCLicked(-1)}>
-                    Add
+                    <AddIcon/>
                 </Button>
             </div>
             

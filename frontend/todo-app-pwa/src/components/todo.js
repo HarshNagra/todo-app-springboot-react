@@ -79,8 +79,8 @@ function Todo(props) {
 
     return (
         <div>
-            <div className={classes.app}>Task ID: {id}</div>
-            <form className={classes.root}  onSubmit={handleSubmit(onSubmit)}>
+            {/* <div className={classes.app}>Task ID: {id}</div> */}
+            <form style={{paddingTop: '40px'}} className={classes.root}  onSubmit={handleSubmit(onSubmit)}>
                 <TextField 
                     name="task"
                     label="Task" 
@@ -92,13 +92,13 @@ function Todo(props) {
                 {errors.task && <div style={{display:'inline'}}><p>Task description should have <br/> at least 5 characters</p><br/></div>} 
                 <TextField 
                     name="targetDate"
-                    label="Target Date" 
+                    label="Due Date" 
                     variant="outlined" 
                     type="date"
                     defaultValue={targetDate}
                     inputRef={register({ required: true })}
                     /> <br/>
-                    {errors.targetDate && "Target Date is required."}
+                    {errors.targetDate && "Due Date is required."}
                 <Button type="submit" className={classes.button} variant="contained"  >
                     Submit
                 </Button>

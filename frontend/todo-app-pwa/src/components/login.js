@@ -40,14 +40,6 @@ function Login(props) {
   
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        // if (loginId === 'harsh' && password==='password'){
-        //     AuthenticationService.registerSuccessfulLogin(loginId, password);
-        //     setLoginFail(false);
-        //     history.push(`/welcome/${loginId}`);
-        // }
-        // else{
-        //     setLoginFail(true);
-        // }
         AuthenticationService.executeBasicAuthenticationService(loginId, password)
         .then(() => {
             setLoginFail(false);
@@ -59,7 +51,6 @@ function Login(props) {
     }
     return (
     <div className={classes.App}>
-
         <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
 
             {loginFail && <div className={classes.loginFail}>Invalid Credentials</div>}

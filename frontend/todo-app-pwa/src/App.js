@@ -24,8 +24,7 @@ function App() {
           <AuthenticatedRoute path="/welcome/:name" component={Welcome}/>
           <AuthenticatedRoute path="/todo/:id" component={Todo}/>
           <AuthenticatedRoute path="/todo" component={TodoList}/>
-          <AuthenticatedRoute path="/logout" component={Logout}/>
-          
+          <Route path="/logout" component={Logout}/>
           <Route  component={Error}/>
         </Switch>
       </Router>
