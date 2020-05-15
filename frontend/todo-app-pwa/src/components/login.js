@@ -40,10 +40,19 @@ function Login(props) {
   
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        AuthenticationService.executeBasicAuthenticationService(loginId, password)
-        .then(() => {
+        // AuthenticationService.executeBasicAuthenticationService(loginId, password)
+        // .then(() => {
+        //     setLoginFail(false);
+        //     AuthenticationService.registerSuccessfulLogin(loginId, password);
+        //     history.push(`/welcome/${loginId}`);
+        // }).catch( () => {
+        //     setLoginFail(true);
+        // })
+
+        AuthenticationService.executeJWTAuthenticationService(loginId, password)
+        .then((response) => {
+            AuthenticationService.registerSuccessfulLoginforJwt(loginId, response.data.token);
             setLoginFail(false);
-            AuthenticationService.registerSuccessfulLogin(loginId, password);
             history.push(`/welcome/${loginId}`);
         }).catch( () => {
             setLoginFail(true);

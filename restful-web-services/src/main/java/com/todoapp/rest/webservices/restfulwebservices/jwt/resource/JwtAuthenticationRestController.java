@@ -1,5 +1,7 @@
-package com.todoapp.rest.webservices.restfulwebservices.jwt;
+package com.todoapp.rest.webservices.restfulwebservices.jwt.resource;
 
+import com.todoapp.rest.webservices.restfulwebservices.jwt.JwtTokenUtil;
+import com.todoapp.rest.webservices.restfulwebservices.jwt.JwtUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
