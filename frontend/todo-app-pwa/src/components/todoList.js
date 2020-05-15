@@ -58,7 +58,7 @@ function TodoList(props) {
         .then (
             response => {
                 refreshTodos();
-                setMessage(`Deleted item ${id}`);
+                setMessage(`Deleted item`);
             }
         )
     }
@@ -66,13 +66,11 @@ function TodoList(props) {
     const updateTodoCLicked = (id) => {
         history.push(`/todo/${id}`);
         let username = AuthenticationService.getLoggedInUserName();
-        console.log()
     }
 
     const addTodoCLicked = (id) => {
         history.push(`/todo/-1`);
         let username = AuthenticationService.getLoggedInUserName();
-        console.log("Add")
     }
 
     return (
@@ -122,7 +120,7 @@ function TodoList(props) {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <div>{message}</div>
+            <div style={{padding: '10px'}}>{message}</div>
             <div style = {{padding: '20px'}}>
                 <Button 
                     className={classes.button} 
