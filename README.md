@@ -18,6 +18,8 @@ Install the modules -
 Start the application on local host - 
 `npm start`
 
+The application will run on `localost:4200`
+
 React JS
 Material UI
 Axios - API Calls
@@ -25,7 +27,9 @@ Axios - API Calls
 #### Backend - 
 
 Install JDK 14.0.1
-Run the application on any IDE (IntelliJ/Eclipse etc.)
+Open ./restful-web-services on any IDE (IntelliJ/Eclipse etc.) and run the application.
+
+The backend will run on `localost:8080`
 
 Spring Boot - JDK 14.0.1
 Basic Authentication and JWT implemented both using Spring Security.
@@ -36,6 +40,10 @@ JPA - Database
 
 The databse will be created with the start of the application. No set up required.
 Please note - It is an In-Memory Database. Therefore, the new updated and created data will be lost once the application is stopped. 
+
+The database can be accessed at `http://localhost:8080/h2-console`
+
+JDBC URL: jdbc:h2:mem:testdb
 
 In-Memory DB
 H2 Hibernate
