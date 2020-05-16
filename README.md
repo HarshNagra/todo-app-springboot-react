@@ -47,7 +47,7 @@ The backend will run on `localost:8080`
 3. H2 Hibernate JPA
 
 
-#### Datbase -
+#### Database -
 
 The databse will be created with the start of the application. No set up required.
 Please note - It is an In-Memory Database. Therefore, the new updated and created data will be lost once the application is stopped. 
