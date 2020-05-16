@@ -103,7 +103,7 @@ function Todo(props) {
                     Submit
                 </Button>
             </form>
-            <div style = {{padding: '5px'}}>
+            <div style = {{paddingTop: '5px', paddingBottom:'16px'}}>
                 <Button onClick={() => history.push('/todo')} className={classes.button} variant="contained"  >
                         Cancel
                 </Button>

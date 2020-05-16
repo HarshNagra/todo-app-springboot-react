@@ -21,11 +21,14 @@ const useStyles = makeStyles({
         padding:'10px'
     }, 
     table: {
-      minWidth: 650,
+      minWidth: 300,
       textAlign: 'center'
     },
     button: {
         backgroundColor: 'lightblue',
+    },
+    targetDate: {
+        fontSize: '12px'
     }
 });
 
@@ -79,39 +82,29 @@ function TodoList(props) {
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                     <TableRow>
-                        {/* <TableCell>ID</TableCell> */}
-                        <TableCell>Task</TableCell>
-                        <TableCell>Due Date</TableCell>
-                        {/* <TableCell>Done</TableCell> */}
                         <TableCell></TableCell>
+                        <TableCell></TableCell>
+                        {/* <TableCell>Due Date</TableCell> */}
                         <TableCell></TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
                     {todos.map((row) => (
                         <TableRow key={row.id}>
-                        {/* <TableCell component="th" scope="row">
-                            {row.id}
-                        </TableCell> */}
-                        <TableCell >{row.task}</TableCell>
-                        <TableCell>{moment(row.targetDate).format('DD/MM/YYYY')}</TableCell>
-                        {/* <TableCell>{''+row.done}</TableCell> */}
-                        <TableCell>
+                            <TableCell>
                             <Button 
                             className={classes.button} 
                             variant="contained"
-                            
                             onClick={() => updateTodoCLicked(row.id)}>
                                 <EditIcon/>
                             </Button>
-                        
-                            
                         </TableCell>
+                        <TableCell >{row.task}<br/><div className={classes.targetDate}>{moment(row.targetDate).format('DD/MM/YYYY')}</div></TableCell>
+                        {/* <TableCell>{moment(row.targetDate).format('DD/MM/YYYY')}</TableCell> */}
                         <TableCell>
                             <Button 
                                 className={classes.button} 
                                 variant="contained" 
-                                
                                 onClick={() => deleteTodoCLicked(row.id)}
                             ><DeleteIcon/></Button>
                         </TableCell>
