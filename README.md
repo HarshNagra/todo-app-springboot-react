@@ -2,6 +2,14 @@
 
 ##### [Click here](https://drive.google.com/file/d/1aUtitzqu06ibs0KCbH_zC9fJhmOFHEN4/view?usp=sharing) to view the application.
 
+![](resources/1.png) 
+
+
+![](resources/2.png) 
+
+
+![](resources/3.png) 
+
 
 This application is subject to Copyright. 
 
