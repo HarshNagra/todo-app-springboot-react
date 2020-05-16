@@ -2,7 +2,7 @@
 
 ##### [Click here](https://drive.google.com/file/d/1aUtitzqu06ibs0KCbH_zC9fJhmOFHEN4/view?usp=sharing) to view the application.
 
-![](resources/1.png) 
+![](resources/1.png=15x15) 
 ![](resources/2.png) 
 ![](resources/3.png) 
 
