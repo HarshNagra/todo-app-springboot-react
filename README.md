@@ -10,7 +10,7 @@ This application is subject to Copyright.
 
 Install NodeJs.
 
-#### Frontend - 
+#### [Frontend](./frontend/todo-app-pwa) - 
 
 
 Open ./frontend/todo
@@ -31,7 +31,7 @@ The application will run on `http://localost:4200`
 2. Material UI
 3. Axios - API Calls
 
-#### Backend - 
+#### [Backend](./restful-web-services) - 
 
 Install JDK 14.0.1
 
