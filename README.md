@@ -10,7 +10,7 @@ This application is subject to Copyright.
 
 Install NodeJs.
 
-#### Frontend - 
+#### [Frontend](./frontend/todo-app-pwa) - 
 
 
 Open ./frontend/todo
@@ -24,14 +24,14 @@ Start the application on local host -
 `npm start`
 
 
-The application will run on `http://localost:4200`
+The application will run on `http://localhost:4200`
 
 
 1. React JS
 2. Material UI
 3. Axios - API Calls
 
-#### Backend - 
+#### [Backend](./restful-web-services) - 
 
 Install JDK 14.0.1
 
@@ -39,7 +39,7 @@ Install JDK 14.0.1
 Open ./restful-web-services on any IDE (IntelliJ/Eclipse etc.) and run the application.
 
 
-The backend will run on `http://localost:8080`
+The backend will run on `http://localhost:8080`
 
 
 1. Spring Boot
